@@ -40,10 +40,14 @@ const port = process.env.PORT || 3700;
 app.use(cors());
 
 // Set Static Folder
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, 'dist/portfolio-template')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
+
+//cargar achivo de rutas
+
+var project_routes = require('./routes/project');
 
 // Passport Middleware
 // app.use(passport.initialize());
@@ -59,10 +63,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, '/dist/portfolio-template/index.html'));
 });
 
 // Start Server
 app.listen(port, () => {
   console.log('Server started on port '+port);
 });
+//rutas
+
+app.use('/api', project_routes)
+
+//exportar
+module.exports = app;
