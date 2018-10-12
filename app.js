@@ -31,8 +31,6 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
-const users = require('./routes/project');
-
 // Port Number
 const port = process.env.PORT || 3700;
 
@@ -49,27 +47,20 @@ app.use(bodyParser.json());
 
 var project_routes = require('./routes/project');
 
-// Passport Middleware
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// require('./config/passport')(passport);
-
-// app.use('/users', users);
-
 // Index Route
 app.get('/', (req, res) => {
   res.send('invaild endpoint');
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/dist/portfolio-template/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/portfolio-template/index.html'));
 });
 
 // Start Server
 app.listen(port, () => {
   console.log('Server started on port '+port);
 });
+
 //rutas
 
 app.use('/api', project_routes)

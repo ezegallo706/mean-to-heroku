@@ -798,6 +798,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Global", function() { return Global; });
 var Global = {
     url: 'http://localhost:3700/api/'
+    //url : 'api/'
 };
 
 
@@ -843,7 +844,7 @@ var ProjectService = /** @class */ (function () {
     };
     ProjectService.prototype.getProjects = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get(this.url + 'projects', { headers: headers });
+        return this._http.get('/api/' + 'projects/', { headers: headers });
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
