@@ -816,7 +816,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProjectService", function() { return ProjectService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _global__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./global */ "./src/app/services/global.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -828,11 +827,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
-
 var ProjectService = /** @class */ (function () {
     function ProjectService(_http) {
         this._http = _http;
-        this.url = _global__WEBPACK_IMPORTED_MODULE_2__["Global"].url;
+        // this.url = Global.url;
     }
     ProjectService.prototype.testService = function () {
         return 'probando el servicio de Angular';
@@ -840,7 +838,7 @@ var ProjectService = /** @class */ (function () {
     ProjectService.prototype.saveProject = function (project) {
         var params = JSON.stringify(project);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.post(this.url + 'save-project', params, { headers: headers });
+        return this._http.post('api/save-project', params, { headers: headers });
     };
     ProjectService.prototype.getProjects = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
@@ -848,16 +846,16 @@ var ProjectService = /** @class */ (function () {
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get(this.url + 'project/' + id, { headers: headers });
+        return this._http.get('api/project' + id, { headers: headers });
     };
     ProjectService.prototype.deleteProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.delete(this.url + 'project/' + id, { headers: headers });
+        return this._http.delete('api/project' + id, { headers: headers });
     };
     ProjectService.prototype.updateProject = function (project) {
         var parametros = JSON.stringify(project);
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.put(this.url + 'project/' + project._id, parametros, { headers: headers });
+        return this._http.put('api/projects' + project._id, parametros, { headers: headers });
     };
     ProjectService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
