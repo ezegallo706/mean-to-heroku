@@ -853,7 +853,7 @@ var ProjectService = /** @class */ (function () {
     };
     ProjectService.prototype.getProjects = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get('api/projects', { headers: headers, responseType: 'text' });
+        return this._http.get('/api/projects', { headers: headers, responseType: 'text' });
         //  .map((res) => res.json());
     };
     ProjectService.prototype.getProject = function (id) {

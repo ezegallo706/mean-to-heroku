@@ -30,7 +30,7 @@ export class ProjectService {
   getProjects(): Observable<any>{
     let headers = new HttpHeaders().set('Content-type', 'application/json');
 
-    return this._http.get('api/projects' , {headers:headers,responseType: 'text'})
+    return this._http.get('/api/projects' , {headers:headers,responseType: 'text'})
       //  .map((res) => res.json());
   }
 
