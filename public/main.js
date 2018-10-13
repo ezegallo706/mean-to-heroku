@@ -696,7 +696,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2>Proyectos</h2>\n\n  <ul>\n    <li *ngFor=\"let project of projects\" class=\"project\">\n      <a [routerLink]=\"['/proyecto', project._id]\">\n      <div class=\"image\">\n        <img src=\"{{url +'get-image/'+ project.image}}\" alt=\"\">\n      </div>\n      <h3>{{project.name}}</h3>\n      <p>{{project.category}}<p>\n      <p>{{project.description}}<p>\n        </a>\n    </li>\n  </ul>\n</div>"
+module.exports = "<div class=\"container\">\n  <h2>Proyectos</h2>\n\n  <ul>\n    <li *ngFor=\"let project of proj\" class=\"project\">\n      <a [routerLink]=\"['/proyecto', project._id]\">\n      <div class=\"image\">\n        <img src=\"{{url +'get-image/'+ project.image}}\" alt=\"\">\n      </div>\n      <h3>{{project.name}}</h3>\n      <p>{{project.category}}<p>\n      <p>{{project.description}}<p>\n        </a>\n    </li>\n  </ul>\n</div>"
 
 /***/ }),
 
@@ -731,16 +731,13 @@ var ProjectsComponent = /** @class */ (function () {
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["Global"].url;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
-        this.getProjects();
-    };
-    ProjectsComponent.prototype.getProjects = function () {
+        // this.getProjects();
         var _this = this;
-        this._projectService.getProjects().subscribe(function (response) {
-            if (response.projects) {
-                _this.projects = response.projects;
-            }
-        }, function (error) {
-            console.log(error);
+        this._projectService.getProjects().subscribe(function (res) {
+            _this.proj = res.proj;
+        }, function (err) {
+            console.log(err);
+            return false;
         });
     };
     ProjectsComponent = __decorate([
