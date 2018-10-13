@@ -60,7 +60,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 // Routes                             
 var routes = [
-    { path: '', component: _components_about_about_component__WEBPACK_IMPORTED_MODULE_3__["AboutComponent"] },
+    // { path: '', component: AboutComponent },
     { path: 'sobre-mi', component: _components_about_about_component__WEBPACK_IMPORTED_MODULE_3__["AboutComponent"] },
     { path: 'proyectos', component: _components_projects_projects_component__WEBPACK_IMPORTED_MODULE_5__["ProjectsComponent"] },
     { path: 'crear-proyecto', component: _components_create_create_component__WEBPACK_IMPORTED_MODULE_4__["CreateComponent"] },
@@ -843,8 +843,8 @@ var ProjectService = /** @class */ (function () {
     };
     ProjectService.prototype.getProjects = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get('api/projects', { headers: headers })
-            .map(function (res) { return res.json(); });
+        return this._http.get('api/projects', { headers: headers });
+        // .map((res:Response) => res.json());
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');

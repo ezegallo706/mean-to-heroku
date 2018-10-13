@@ -12,7 +12,7 @@ import { EditComponent } from '../components/edit/edit.component';
 
 // Routes                             
 const routes: Routes = [
-  { path: '', component: AboutComponent },
+  // { path: '', component: AboutComponent },
   { path: 'sobre-mi', component: AboutComponent },
   { path: 'proyectos', component: ProjectsComponent },
   { path: 'crear-proyecto', component: CreateComponent },
