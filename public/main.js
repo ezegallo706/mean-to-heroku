@@ -731,8 +731,7 @@ var ProjectsComponent = /** @class */ (function () {
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["Global"].url;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
-        // this.getProjects();
-        this.projects = this._projectService.getProjects();
+        this.getProjects();
     };
     // getProjects(){
     //   this._projectService.getProjects().subscribe(
