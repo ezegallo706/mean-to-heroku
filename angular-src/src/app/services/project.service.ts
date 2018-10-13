@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpHeaders} from '@angular/common/http';
-import {Response} from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Project} from '../models/project';
 import {Global} from './global';
@@ -27,12 +27,18 @@ export class ProjectService {
     return this._http.post('api/save-project', params ,{headers:headers})
   }
 
-  getProjects(): Observable<any>{
-    let headers = new HttpHeaders().set('Content-type', 'application/json');
+  // getProjects(): Observable<any>{
+  //   let headers = new HttpHeaders().set('Content-type', 'application/json');
 
-    return this._http.get('/api/projects' , {headers:headers,responseType: 'text'})
-      //  .map((res) => res.json());
-  }
+  //   return this._http.get('/api/projects' , {headers:headers,responseType: 'text'})
+  //     //  .map((res) => res.json());
+  // }
+
+  getProjects():  Observable<any> {
+    return this._http.get("/api/projects")
+       .map((res: Response) => res.json())
+      //  .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+}
 
   getProject(id): Observable<any> {
     let headers = new HttpHeaders().set('Content-type', 'application/json');

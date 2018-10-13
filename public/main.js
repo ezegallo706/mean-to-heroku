@@ -731,7 +731,8 @@ var ProjectsComponent = /** @class */ (function () {
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["Global"].url;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
-        this.getProjects();
+        // this.getProjects();
+        this.projects = this._projectService.getProjects();
     };
     // getProjects(){
     //   this._projectService.getProjects().subscribe(
@@ -851,10 +852,15 @@ var ProjectService = /** @class */ (function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
         return this._http.post('api/save-project', params, { headers: headers });
     };
+    // getProjects(): Observable<any>{
+    //   let headers = new HttpHeaders().set('Content-type', 'application/json');
+    //   return this._http.get('/api/projects' , {headers:headers,responseType: 'text'})
+    //     //  .map((res) => res.json());
+    // }
     ProjectService.prototype.getProjects = function () {
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get('/api/projects', { headers: headers, responseType: 'text' });
-        //  .map((res) => res.json());
+        return this._http.get("/api/projects")
+            .map(function (res) { return res.json(); });
+        //  .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');

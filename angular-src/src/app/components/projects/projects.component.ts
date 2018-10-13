@@ -10,9 +10,9 @@ import { Global } from '../../services/global';
 })
 export class ProjectsComponent implements OnInit {
 
-  public projects: Project[];
+  // public projects: Project[];
   public url: String;
-
+  projects;
  
   constructor(
     private _projectService:ProjectService
@@ -21,8 +21,8 @@ export class ProjectsComponent implements OnInit {
     
 
   ngOnInit() {
-    this.getProjects();
-    
+    // this.getProjects();
+    this.projects = this._projectService.getProjects();
   }
 
   // getProjects(){
