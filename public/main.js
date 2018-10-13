@@ -696,7 +696,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h2>Proyectos</h2>\n\n  <ul>\n    <li *ngFor=\"let project of proj\" class=\"project\">\n      <a [routerLink]=\"['/proyecto', project._id]\">\n      <div class=\"image\">\n        <img src=\"{{url +'get-image/'+ project.image}}\" alt=\"\">\n      </div>\n      <h3>{{project.name}}</h3>\n      <p>{{project.category}}<p>\n      <p>{{project.description}}<p>\n        </a>\n    </li>\n  </ul>\n</div>"
+module.exports = "<div class=\"container\">\n  <h2>Proyectos</h2>\n\n  <ul>\n    <li *ngFor=\"let project of projects\" class=\"project\">\n      <a [routerLink]=\"['/proyecto', project._id]\">\n      <div class=\"image\">\n        <img src=\"{{url +'get-image/'+ project.image}}\" alt=\"\">\n      </div>\n      <h3>{{project.name}}</h3>\n      <p>{{project.category}}<p>\n      <p>{{project.description}}<p>\n        </a>\n    </li>\n  </ul>\n</div>"
 
 /***/ }),
 
@@ -731,13 +731,26 @@ var ProjectsComponent = /** @class */ (function () {
         this.url = _services_global__WEBPACK_IMPORTED_MODULE_2__["Global"].url;
     }
     ProjectsComponent.prototype.ngOnInit = function () {
-        // this.getProjects();
+        this.getProjects();
+    };
+    // getProjects(){
+    //   this._projectService.getProjects().subscribe(
+    //     response => {
+    //       if(response.projects){
+    //         this.projects = response.projects;
+    //       }
+    //     },
+    //     error => {
+    //       console.log(<any>error)
+    //     }
+    //   );
+    // }
+    ProjectsComponent.prototype.getProjects = function () {
         var _this = this;
-        this._projectService.getProjects().subscribe(function (res) {
-            _this.proj = res.proj;
-        }, function (err) {
-            console.log(err);
-            return false;
+        this._projectService.getProjects().subscribe(function (response) {
+            if (response.projects) {
+                _this.projects = response.projects;
+            }
         });
     };
     ProjectsComponent = __decorate([
@@ -840,8 +853,8 @@ var ProjectService = /** @class */ (function () {
     };
     ProjectService.prototype.getProjects = function () {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
-        return this._http.get('api/projects', { headers: headers });
-        // .map((res:Response) => res.json());
+        return this._http.get('api/projects', { headers: headers })
+            .map(function (res) { return res.json(); });
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');

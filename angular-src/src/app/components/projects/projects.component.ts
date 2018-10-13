@@ -13,8 +13,7 @@ export class ProjectsComponent implements OnInit {
   public projects: Project[];
   public url: String;
 
-  proj:Object;
-  
+ 
   constructor(
     private _projectService:ProjectService
     
@@ -22,18 +21,9 @@ export class ProjectsComponent implements OnInit {
     
 
   ngOnInit() {
-    // this.getProjects();
-
-    this._projectService.getProjects().subscribe(res => {
-      this.proj = res.proj;
-    },
-     err => {
-       console.log(err);
-       return false;
-     });
-  }
+    this.getProjects();
     
-  
+  }
 
   // getProjects(){
   //   this._projectService.getProjects().subscribe(
@@ -47,6 +37,16 @@ export class ProjectsComponent implements OnInit {
   //     }
   //   );
   // }
+
+  getProjects(){
+    this._projectService.getProjects().subscribe(
+      response => {
+        if(response.projects){
+          this.projects = response.projects;
+        }
+      }
+    );
+  }
 
 
 }
