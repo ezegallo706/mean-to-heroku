@@ -35,9 +35,8 @@ export class ProjectService {
   // }
 
   getProjects():  Observable<any> {
-    return this._http.get("/api/projects")
+    return this._http.get('/api/projects')
        .map((res: Response) => res.json())
-      //  .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 }
 
   getProject(id): Observable<any> {

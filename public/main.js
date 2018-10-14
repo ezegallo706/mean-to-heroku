@@ -730,24 +730,11 @@ var ProjectsComponent = /** @class */ (function () {
     ProjectsComponent.prototype.ngOnInit = function () {
         this.getProjects();
     };
-    // getProjects(){
-    //   this._projectService.getProjects().subscribe(
-    //     response => {
-    //       if(response.projects){
-    //         this.projects = response.projects;
-    //       }
-    //     },
-    //     error => {
-    //       console.log(<any>error)
-    //     }
-    //   );
-    // }
     ProjectsComponent.prototype.getProjects = function () {
         var _this = this;
-        this._projectService.getProjects().subscribe(function (response) {
-            if (response.projects) {
-                _this.projects = response.projects;
-            }
+        this._projectService.getProjects()
+            .subscribe(function (response) {
+            _this.projects = response;
         });
     };
     ProjectsComponent = __decorate([
@@ -854,9 +841,8 @@ var ProjectService = /** @class */ (function () {
     //     //  .map((res) => res.json());
     // }
     ProjectService.prototype.getProjects = function () {
-        return this._http.get("/api/projects")
+        return this._http.get('/api/projects')
             .map(function (res) { return res.json(); });
-        //  .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     };
     ProjectService.prototype.getProject = function (id) {
         var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-type', 'application/json');
