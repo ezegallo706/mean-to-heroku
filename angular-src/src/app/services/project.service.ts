@@ -36,7 +36,10 @@ export class ProjectService {
 
   getProjects():  Observable<any> {
     return this._http.get('/api/projects')
-       .map((res: Response) => res.json())
+    .map((response:Response) => {
+      response.json();
+      console.log(response);
+      });
 }
 
   getProject(id): Observable<any> {
