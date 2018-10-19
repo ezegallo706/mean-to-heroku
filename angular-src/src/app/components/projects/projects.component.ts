@@ -19,25 +19,25 @@ export class ProjectsComponent implements OnInit {
     this.getProjects();
   }
 
-  getProjects(){
-    this._projectService.getProjects()
-      .subscribe( response => {
-            this.projects = response;
-        }
-      );
-  }
-
   // getProjects(){
-  //   this._projectService.getProjects().subscribe(
-  //     response => {
-  //       if(response.projects){
-  //         this.projects = response.projects;
+  //   this._projectService.getProjects()
+  //     .subscribe( response => {
+  //           this.projects = response;
   //       }
-  //     },
-  //     error => {
-  //       console.log(<any>error)
-  //     }
-  //   );
+  //     );
   // }
+
+  getProjects(){
+    this._projectService.getProjects().subscribe(
+      response => {
+        if(response.projects){
+          this.projects = response.projects;
+        }
+      },
+      error => {
+        console.log(<any>error)
+      }
+    );
+  }
  
 }

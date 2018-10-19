@@ -1,67 +1,37 @@
+'use strict'
+
 const express = require('express');
-const path = require('path');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-// const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./config/database');
-
-// Connect To Database (NEW) But not working!!!!!!!!!! (because of secret in db.js!!!!!)
-//const db = require('./config/database');
-// Map global promise - get rid of warning
-//mongoose.Promise = global.Promise;
-// Connect to mongoose
-//mongoose.connect(db.mongoURI, {
-    //useMongoClient: true
-//})
-//.then(() => console.log('MongoDB Connected...'))
-//.catch(err => console.log(err));
-
-
-// Connect To Database (OLD CODE)
-mongoose.connect(config.database, { useMongoClient: true});
-// On Connection
-mongoose.connection.on('connected', () => {
-  console.log('Connectado a la base de datos '+config.database);
-});
-// On Error
-mongoose.connection.on('error', (err) => {
-  console.log('Database error '+err);
-});
 
 const app = express();
 
-// Port Number
-const port = process.env.PORT || 3700;
-
-// CORS Middleware
-app.use(cors());
-
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Body Parser Middleware
-app.use(bodyParser.json());
-
-//cargar achivo de rutas
-
 var project_routes = require('./routes/project');
 
-// Index Route
-app.get('/', (req, res) => {
-  res.send('invaild endpoint');
+// middlewares
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
-});
+//rutas 
+// app.get('/', (req, res) => {
+//   res.status(200).send(
+//     "<h1> pagina de inicio</h1>"
+//   );
+// });
 
-// Start Server
-app.listen(port, () => {
-  console.log('Server started on port '+port);
-});
-
-//rutas
+// app.get('/projects', (req, res) => {
+//   res.status(200).send({
+//     message: "hola mundo desde mi API node.js"
+//   });
+// });
 
 app.use('/api', project_routes)
 

@@ -13,7 +13,7 @@ export class ProjectService {
   public url:string;
 
   constructor(private _http:HttpClient) { 
-    // this.url = Global.url;
+    this.url = Global.url;
   }
 
   testService(){
@@ -30,17 +30,22 @@ export class ProjectService {
   // getProjects(): Observable<any>{
   //   let headers = new HttpHeaders().set('Content-type', 'application/json');
 
-  //   return this._http.get('/api/projects' , {headers:headers,responseType: 'text'})
-  //     //  .map((res) => res.json());
+  //   return this._http.get(this.url+'projects' , {headers:headers})
   // }
 
-  getProjects():  Observable<any> {
-    return this._http.get('/api/projects')
-    .map((response:Response) => {
-      response.json();
-      console.log(response);
-      });
-}
+  getProjects(): Observable<any>{
+    let headers = new HttpHeaders().set('Content-type', 'application/json');
+
+    return this._http.get('api/projects' , {headers:headers})
+  }
+
+//   getProjects():  Observable<any> {
+//     return this._http.get('http://localhost:3700/api/projects')
+//     .map((response:Response) => {
+//       response.json();
+//       console.log(response);
+//       });
+// }
 
   getProject(id): Observable<any> {
     let headers = new HttpHeaders().set('Content-type', 'application/json');
