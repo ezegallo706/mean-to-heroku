@@ -33,7 +33,17 @@ app.use((req, res, next) => {
 //   });
 // });
 
-app.use('/api', project_routes)
+app.use('/api', project_routes);
+
+// Index Route
+app.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 
 //exportar
 module.exports = app;
