@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 app.use('/api', project_routes);
 
 // Index Route
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   res.send('invaild endpoint');
 });
 
