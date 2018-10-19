@@ -2,7 +2,8 @@
 
 var mongoose = require('mongoose');
 var app = require('./app');
-var port = 3700;
+// Port Number
+const port = process.env.PORT || 3700;
 
  mongoose.Promise = global.Promise;
  mongoose.connect('mongodb://eze:eze123@ds139632.mlab.com:39632/minodejsdatabase') 
